@@ -3,11 +3,13 @@
 #4 tertium makes 1 imperium
 #4 imperium makes 1 supremium
 
-#TODO: Ask for input when running the script and walk the user through how stuff works
-#TODO: Expand to growth accelerators
+
+
 #TODO: Rewrite methods to be better. Use powers of 4 and something like checking the position of a string in the array. E.g "supremium" matches [3], so do 4^(3+5) or something
+#TODO: Account for user input being unexpected (error handling and default values)
 
 dusts = ["PRUDENTIUM", "TERTIUM", "IMPERIUM", "SUPREMIUM"]
+crafting_options = ["DUST", "TOOL"]
 
 
 def main():
@@ -19,28 +21,41 @@ def main():
     print("Please enter the tier of dust you want to query")
     print(f"These are: {dusts}")
     dust_selection = input().upper()
-    #dust_selection = "supremium".upper()
+    check_user_valid_input(dust_selection, dusts)
 
-    print("Would you like to craft a certain quantity of \"dust\", or craft a \"tool\"?")
+    
+    #How do I get the user to input a value until its valid
+    #No loops
+
+
+
+    print("Would you like to craft a certain quantity of \"DUST\", or craft a \"TOOL\"?")
     crafting_selection = input().upper()
     #crafting_selection = "dust".upper()
+    check_user_valid_input(crafting_selection, crafting_options)
 
 
     print("How many?")
     crafting_quantity = int(input())
-    #crafting_quantity = 20
+    
 
-    if crafting_selection == "dust".upper():
-        print(inferium_needed_to_craft(crafting_quantity, dust_selection))
+    if crafting_selection == crafting_options[0].upper():
+        print(f"{inferium_needed_to_craft(crafting_quantity, dust_selection)} inferium needed to craft {crafting_quantity} piles of {dust_selection.lower()} dust")
         
     
-    if crafting_selection == "tool".upper():
+    if crafting_selection == crafting_options[1].upper():
         
         result = int(inferium_for_tool(dust_selection, total_inferium))
-        print(result*crafting_quantity)
+        print(f"{result*crafting_quantity} inferium needed to craft {crafting_quantity} {dust_selection} tool(s)")
         
     #crafting 20 supremium dust. Expecting 5120
     
+
+def check_user_valid_input(user_input, valid_input):
+    if user_input not in valid_input:
+        print("Invalid selection, please enter your selection again")
+        repeat_input = input().upper()
+        check_user_valid_input(repeat_input, valid_input)
 
 
 
