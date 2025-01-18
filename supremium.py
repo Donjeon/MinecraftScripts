@@ -1,7 +1,7 @@
 
 
-#TODO: Rewrite methods to be better. Use powers of 4 and something like checking the position of a string in the array. E.g "supremium" matches [3], so do 4^(3+5) or something
-#TODO: Account for user input being unexpected (error handling and default values)
+#TODO: Rewrite calculation methods to use immutable values. Use powers of 4 and something like checking the position of a string in the array. E.g "supremium" matches [3], so do 4^(3+5) or something
+
 
 
 dusts = ["PRUDENTIUM", "TERTIUM", "IMPERIUM", "SUPREMIUM"]
@@ -23,16 +23,11 @@ def main():
     print("How many?")
     crafting_quantity = check_user_valid_int_input(input())
     
-
-
     if crafting_selection == crafting_options[0].upper():
-
         print(f"{inferium_needed_to_craft(crafting_quantity, dust_selection)} inferium needed to craft {crafting_quantity} piles of {dust_selection.lower()} dust")
         
     
-
     if crafting_selection == crafting_options[1].upper():
-
         print(f"{int(inferium_for_tool(dust_selection, total_inferium))*crafting_quantity} inferium needed to craft {crafting_quantity} {dust_selection} tool(s)")
         
     
@@ -42,12 +37,11 @@ def check_user_valid_int_input(user_quantity):
         return int(user_quantity)
     else:
         print("Invalid input, please enter a valid number")
-        repeat_input = input().upper()
+        repeat_input = input()
         check_user_valid_int_input(repeat_input)
 
 
 def check_user_valid_string_input(user_input, valid_input):
-
     if user_input not in valid_input:
         print("Invalid input, please enter your selection again")
         repeat_input = input().upper()
