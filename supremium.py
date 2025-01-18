@@ -1,7 +1,7 @@
 
 
 #TODO: Rewrite calculation methods to use immutable values. Use powers of 4 and something like checking the position of a string in the array. E.g "supremium" matches [3], so do 4^(3+5) or something
-
+#TODO: Add growth accelerators
 
 
 dusts = ["PRUDENTIUM", "TERTIUM", "IMPERIUM", "SUPREMIUM"]
@@ -37,7 +37,7 @@ def check_user_valid_int_input(user_quantity):
         return int(user_quantity)
     else:
         print("Invalid input, please enter a valid number")
-        repeat_input = input()
+        repeat_input = input().upper()
         check_user_valid_int_input(repeat_input)
 
 
